@@ -1,47 +1,40 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react'
-import { useNavigate  } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BiArrowBack } from 'react-icons/bi';
-
 import axios from 'axios';
 
 export default function AdminOrderTracking() {
-
     const [data, setData] = useState([]);
-    const [query , setQuery] = useState(data);
+    const [query, setQuery] = useState('');
     const navigate = useNavigate();
-
-    useEffect(() => {
-        let x  = localStorage.getItem('login')
-        if(!x)
-        {
-            navigate('/')
-        }
-    },[])
-   
 
     useEffect(() => {
         (async () => {
             try {
-                await axios.get(`http://localhost:8000/getAllOrdersData`).then(res => setData(res.data))
+                const res = await axios.get(`http://localhost:8000/getAllOrdersData`);
+                setData(res.data);
             } catch (error) {
                 console.log(error.message);
             }
-        })()
-    }, [data, setData])
-    
+        })();
+    }, []);
+
     let searchedItem = data.filter((item) => item.tracking_id.includes(query));
-    
 
     return (
         <div className="w-full h-full p-4">
             <div className='w-full h-10 mb-4'>
-                <BiArrowBack onClick={() => navigate(-1)} className='text-xl w-20 h-10  text-black flex items-center justify-center cursor-pointer' />
+                <BiArrowBack onClick={() => navigate(-1)} className='text-xl w-20 h-10 text-black flex items-center justify-center cursor-pointer' />
             </div>
             <div className='w-full p-1 my-1 flex items-center justify-between'>
-            <h2 className='text-4xl font-semibold ml-4'>Order History</h2>
-            <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder='Search By Moiz****...'  className='w-64 p-2 border-2 border-orange-600 rounded mr-2 outline-none '/>
+                <h2 className='text-4xl font-semibold ml-4'>Order History</h2>
+                <input
+                    type="search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder='Search By Moiz****...'
+                    className='w-64 p-2 border-2 border-orange-600 rounded mr-2 outline-none'
+                />
             </div>
             <div className="flex flex-col p-4">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -68,11 +61,10 @@ export default function AdminOrderTracking() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-
-                                        searchedItem.map((item) => {
-                                            let id = item._id;
-                                            return (<tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                    {searchedItem.map((item) => {
+                                        let id = item._id;
+                                        return (
+                                            <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100" key={id}>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     {id}
                                                 </td>
@@ -86,14 +78,15 @@ export default function AdminOrderTracking() {
                                                     {item.status}
                                                 </td>
                                                 <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    <button onClick={() => navigate(`adminorderDetail/${id}`)} className='border-2 border-orange-600 rounded hover:text-white hover:bg-orange-600 transition-all duration-200 p-2'>View Detail</button>
+                                                    <button
+                                                        onClick={() => navigate(`adminorderDetail/${id}`)}
+                                                        className='border-2 border-orange-600 rounded hover:text-white hover:bg-orange-600 transition-all duration-200 p-2'>
+                                                        View Detail
+                                                    </button>
                                                 </td>
-
-                                            </tr>)
-
-                                        })
-                                    }
-
+                                            </tr>
+                                        );
+                                    })}
                                 </tbody>
                             </table>
                         </div>
@@ -101,5 +94,5 @@ export default function AdminOrderTracking() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

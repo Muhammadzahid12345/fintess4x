@@ -7,6 +7,10 @@ import personalApplication from '../model/TrainerRegistrationForm.js';
 import trainingOrder from '../model/TrainingPAyment.js'
 import mainChatSchema from '../model/MainChat.js'
 import nodemailer from 'nodemailer'
+const router = express.Router();
+import express from 'express';
+
+
 
 // ^ register user logic
 export const registerUser = async (req, res) => {
@@ -240,6 +244,7 @@ export const adminReply = async (req, res) => {
     }
 }
 
+
 // ---------------------------------------------- cus complain view -----------------------------------------------------
 export const getSpecificUSerDetail = async (req, res) => {
     const data = req.query;
@@ -272,19 +277,19 @@ export const saveSupplierApplication = async (req, res) => {
 
                 auth: {
 
-                    user: 'laravelprojectofc@gmail.com',
+                    user: 'zahidsaeed@gmail.com',
 
-                    pass: 'traqkgwrgcptnrty'
+                    pass: 'elwwtllzhmiubotv'
                 }
 
             });
 
             await transporter.sendMail({
 
-                from: 'laravelprojectofc@gmail.com',
+                from: 'zahidsaeed141@gmail.com',
 
 
-                to: "mrmoiz.dev@gmail.com",
+                to: "mz1926584@gmail.com",
 
                 subject: "You Received a Message ",
 
@@ -338,19 +343,19 @@ export const saveTrainerApplication = async (req, res) => {
 
                 auth: {
 
-                    user: 'laravelprojectofc@gmail.com',
+                    user: 'zahidsaeed@gmail.com',
 
-                    pass: 'traqkgwrgcptnrty'
+                    pass: 'elwwtllzhmiubotv'
                 }
 
             });
 
             await transporter.sendMail({
 
-                from: 'laravelprojectofc@gmail.com',
+                from: 'zahidsaeed141@gmail.com',
 
 
-                to: "mrmoiz.dev@gmail.com",
+                to: "mz1926584@gmail.com",
 
                 subject: "You Received a Message ",
 

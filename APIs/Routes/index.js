@@ -3,6 +3,9 @@ const Router = express.Router();
 import {assessoriesData ,getassessoriesData , deleteassessoriesData, machineData,getGainerdata,deleteGainerData , searchmachineid , getmachineIdData ,deletemachineData , GainerData , getAllmachineData , getAllaccessoriesData , getAllmedicineData} from '../controller/index.js'
 
 
+
+
+
 //Router for machines Data
 
 Router.post('/machinesData' , machineData)

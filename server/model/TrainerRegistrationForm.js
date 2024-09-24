@@ -15,3 +15,4 @@ const personalTrainerSchema = mongoose.Schema ({
 
 const personalApplication = mongoose.model("PersonalTrainerSchema", personalTrainerSchema) 
 export default personalApplication;
+
