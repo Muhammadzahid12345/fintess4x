@@ -22,3 +22,4 @@ ConnectionUrl=mongodb+srv://mz1926584:zWxmqPeoeYSVvTWD@cluster0.niwin.mongodb.ne
 - cd client & cd server
 - npm install in both folders
 - npm start in both folders to start development server 
+"# fintess4x" 
